@@ -1,0 +1,17 @@
+.title {
+  margin: 0;
+  font: var(--headline1);
+
+  &.black {
+    color: var(--black-10);
+  }
+}
+
+.subtitle {
+  margin: 0;
+  font: var(--subtitle);
+
+  &.gray {
+    color: var(--gray-20);
+  }
+}
