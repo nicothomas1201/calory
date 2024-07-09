@@ -1,4 +1,4 @@
-import { Card } from '@/components/home/Card'
+import { Card } from './components/Card'
 import styles from '@/styles/titles.module.css'
 
 import { Flex } from 'antd'
