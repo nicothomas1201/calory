@@ -1,0 +1,10 @@
+.card {
+  max-inline-size: 325px;
+  box-sizing: border-box;
+  inline-size: 100%;
+  background-color: var(--black-20);
+  padding: 32px;
+  border-radius: 12px;
+  border: none;
+  color: var(--white);
+}
