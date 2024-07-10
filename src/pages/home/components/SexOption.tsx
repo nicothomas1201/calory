@@ -1,12 +1,11 @@
 import { Flex, Select } from 'antd'
 import type { SelectProps } from 'antd'
 import type { OptionProps } from './props'
-import { Sex } from '../models'
 import { validateInputNumber } from '@/utils'
-import { useFormContext } from '../context/form'
+import { useUserContext } from '@/context'
 
 export function SexOption({ label = 'Sexo', id }: OptionProps & SelectProps) {
-  const { setForm } = useFormContext()
+  const { setForm } = useUserContext()
 
   const options = [
     {
@@ -22,11 +21,9 @@ export function SexOption({ label = 'Sexo', id }: OptionProps & SelectProps) {
   const handleChange: SelectProps['onChange'] = (value) => {
     if (!validateInputNumber(value)) return
 
-    const sex = value === Sex.Man ? 'Hombre' : 'Mujer'
-
     setForm((prev) => ({
       ...prev,
-      sex,
+      sex: value,
     }))
   }
 

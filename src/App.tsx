@@ -1,7 +1,7 @@
 import { ConfigProvider } from 'antd'
-import { Home } from './pages'
+import { Home, Test } from './pages'
 import { Redirect, Route, Switch } from 'wouter'
-import { FormProvider } from './pages/home/context/form'
+import { UserProvider } from './context'
 
 function App() {
   return (
@@ -20,10 +20,11 @@ function App() {
           <Redirect to="/home" />
         </Route>
         <Route path="/home">
-          <FormProvider>
+          <UserProvider>
             <Home />
-          </FormProvider>
+          </UserProvider>
         </Route>
+        <Route path="/test" component={Test} />
       </Switch>
     </ConfigProvider>
   )

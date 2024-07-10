@@ -15,3 +15,9 @@
     color: var(--gray-20);
   }
 }
+
+.body1 {
+  margin: 0;
+  font: var(--body1-regular);
+  color: var(--black-20);
+}

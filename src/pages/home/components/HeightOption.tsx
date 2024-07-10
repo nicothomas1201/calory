@@ -1,34 +1,64 @@
-import { Flex, InputNumber } from 'antd'
-import type { InputNumberProps } from 'antd'
+import { Flex } from 'antd'
+import type { InputNumberProps, SelectProps } from 'antd'
 import type { OptionProps } from './props'
-import { useFormContext } from '../context/form'
+import { useUserContext } from '@/context'
+import { SelectNumberInput } from './SelectNumberInput'
 import { validateInputNumber } from '@/utils'
+import { EnumHeight } from '@/models'
 
 export function HeightOption({
   label = 'Altura',
   id,
-  min,
-  max,
 }: OptionProps & InputNumberProps) {
-  const { setForm } = useFormContext()
-  const handleChange: InputNumberProps['onChange'] = (value) => {
+  const options = [
+    {
+      label: 'cm',
+      value: EnumHeight.cm,
+    },
+    {
+      label: 'm',
+      value: EnumHeight.m,
+    },
+  ]
+
+  const { setForm } = useUserContext()
+
+  const onChangeHeight: InputNumberProps['onChange'] = (value) => {
     if (!validateInputNumber(value)) return
 
     setForm((prev) => ({
       ...prev,
-      height: value as number,
+      height: {
+        cuantity: value as number,
+        unit: prev.height.unit,
+      },
+    }))
+  }
+
+  const onChangeSelect: SelectProps['onChange'] = (value) => {
+    if (!validateInputNumber(value)) return
+
+    console.log(value)
+
+    setForm((prev) => ({
+      ...prev,
+      height: {
+        cuantity: prev.height.cuantity,
+        unit: value,
+      },
     }))
   }
 
   return (
     <Flex vertical gap="small">
       <label htmlFor={id}>{label}</label>
-      <InputNumber
-        onChange={handleChange}
-        id={id}
-        min={min}
-        max={max}
-        style={{ width: '100%' }}
+      <SelectNumberInput
+        id="weight"
+        options={options}
+        min={0}
+        max={999}
+        onChangeNumber={onChangeHeight}
+        onChangeSelect={onChangeSelect}
       />
     </Flex>
   )

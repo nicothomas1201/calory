@@ -7,26 +7,17 @@ type Props = {
   max: number
   onChangeNumber: InputNumberProps['onChange']
   onChangeSelect: SelectProps['onChange']
+  options: SelectProps['options']
 }
 
-export function WeightInput({
+export function SelectNumberInput({
   id,
   min,
   max,
   onChangeNumber,
   onChangeSelect,
+  options,
 }: Props) {
-  const options = [
-    {
-      label: 'kg',
-      value: 1,
-    },
-    {
-      label: 'lb',
-      value: 2,
-    },
-  ]
-
   return (
     <Space.Compact>
       <InputNumber
